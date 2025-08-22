@@ -27,18 +27,8 @@ import random
 #    - return:  integer
 #=============================================================================
 
-def quarter(month):
-    """This function determines the quarter of the year from a given month
 
-    Args:
-        month (str): The name of the month
 
-    Returns:
-        value (int): the quarter of the year
-    """
-    date = {"january": 0, "february": 1, "march": 2, "april": 3, "may": 4, "june": 5, "july": 6, "august": 7, "september": 8, "october": 9, "november": 10, "december": 11}
-    value = date[month.lower()]
-    return value // 3 + 1
 
 #==========================================================================
 # q2 - create function sumOfSquares() to meet the conditions below
@@ -57,18 +47,8 @@ def quarter(month):
 #    - return: integer
 #==========================================================================
 
-def sumOfSquares(number):
-    """ This function calculates the sum of all the squares from 1 to the provided integer.
-        Args:
-        number (int): The provided integer
 
-    Returns:
-        total (int): the sum of all the squares
-    """
-    total = 0
-    for i in range(number + 1):
-        total += i**2
-    return total
+
 
 #==========================================================================
 # q3 - create function sumEven() to meet the conditions below
@@ -92,31 +72,8 @@ def sumOfSquares(number):
 #    - return: integer
 #==========================================================================
 
-def sumEven(p1, p2):
-    """This function adds all of the even integers within two given points. If the points are even, 
-    they are included within the sum. Addition begins from the largest even integer and works its way down. 
 
-    Args:
-        p1 (int): The smaller of the two provided integers
-        p2 (int): The larger of the two provided integers
 
-    Returns:
-        int: The sum of the provided even integers 
-    """
-    total = 0
-
-    # This statement checks to see if p2 is odd, if so p2 is subtracted by one. This results in the largest even integer initializing the loop
-    if p2 % 2 != 0:     
-        p2 = p2 - 1
-
-    # This statement checks to see if p1 is even, if so p1 is subtracted by one. This results in the smallest integer ending the loop
-    if p1 % 2 == 0:     
-        p1 = p1 - 1
-
-    for i in range (p2,p1, -2):
-        print(i)
-        total += i
-    return total
 
 #==========================================================================
 # q4 - create function addValue() to meet the conditions below
@@ -139,10 +96,9 @@ def sumEven(p1, p2):
 #    - return: None
 #==========================================================================
 
-def addValue(valueList, value):
 
-    for i in range(len(valueList)):
-        valueList[i] += value
+
+
 
 #==========================================================================
 # q5 - create function fullNames() to meet the conditions below
@@ -170,12 +126,8 @@ def addValue(valueList, value):
 #    - return:  list (of strings)
 #==========================================================================
 
-def fullNames(firstNamesList, lastNamesList):
-    fullNamesList = []
-    for i in range(len(firstNamesList)):
-        for j in range(len(lastNamesList)):
-            fullNamesList.append(f"{firstNamesList[i]} {lastNamesList[j]}")
-    return fullNamesList
+
+
 
 #=============================================================================
 # q6 - create function countLowerCase() to meet the conditions below
@@ -204,14 +156,7 @@ def fullNames(firstNamesList, lastNamesList):
 #    - return:  integer
 #=============================================================================
 
-def countLowerCase(givenString):
-    givenString = list(givenString)
-    lowercase = 0
 
-    for char in givenString:
-        if "a" <= char <= "z":
-            lowercase += 1
-    return lowercase
 
 
 #=============================================================================
@@ -241,7 +186,25 @@ def countLowerCase(givenString):
 #    - return:  string
 #=============================================================================
 
+def readNLines(fileName, N):
+    """
+    Reads N lines from the input file and writes them in one string, with the lines
+    separated by a space.
 
+    Args:
+        fileName (string): The name/path of the to be read file.
+        N (int): number of lines read.
+
+    Returns:
+        output (string): The formated string with the corresponding lines (and no space at the end).
+    """
+    output = ""
+    with open(fileName, "r") as file:
+        for i in range(N):
+            line = file.readline()
+            line = line.strip()
+            output += line + " "
+    return output.strip()
 
 
 #=============================================================================
@@ -265,6 +228,24 @@ def countLowerCase(givenString):
 #    - return:  integer
 #=============================================================================
 
+def writeEvenNumbers(fileName, value):
+    """
+    Writes even numbers line by line in the file until the value.
+
+    Args:
+        fileName (string): The name/path of the to be edited file.
+        value (int): maximum value for the even number.
+
+    Returns:
+        count (int): The number of lines and changes the input file.
+    """
+    count = 0
+    with open(fileName, "w") as file:
+        for i in range(value+1):
+            if (i%2 == 0) and (i >=2) :
+                file.write(str(i) + "\n") 
+                count += 1
+    return count
 
 
 
@@ -293,9 +274,22 @@ def countLowerCase(givenString):
 #    - param:   integer
 #    - return:  None
 #==========================================================================
+def triangle(size: int) -> None:
+    """
+    Print a right-angled triangle made of asterisks.
 
+    Args:
+        size (int): The height of the triangle (number of rows).
 
-
+    Returns:
+        None: This function only prints the triangle and does not return a value.
+    """
+    tri = ""
+    for i in range(size):          
+        for j in range(i + 1):       
+            tri += "*"
+        tri += "\n"                
+    print(tri)
 
 #=============================================================================
 # q10 - DEBUG function find
@@ -327,21 +321,21 @@ def countLowerCase(givenString):
 #               string (a single character)
 #    - return:  integer
 #=============================================================================
-
 def find(strList, c):
     '''accept a list of strings, and a character c;
        count the number of occurrences of c in strList;
        return the count'''
-    strList = []
     count = 0
     for word in strList:
-        if word in strList:
-            count += 1
+        for char in word:
+            if char == c:
+                count += 1
     return count
 
-
-
-
+#The problem was that the parameters strList is instantly overwritten by the function
+#Therefore the for-loop iterates over an empty array
+#Additionally, the function (if the list weren't overwritten) searched for every element in the list whether or not this element is
+#in the list (e.g. if the character would be 'b' and the list [apple, apple, apple] the result would be 3 even if you'd excpet 0)
 
 
 #==========================================================================
