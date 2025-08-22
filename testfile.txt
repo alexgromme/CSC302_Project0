@@ -1,0 +1,10 @@
+Trucks
+Small Cars
+SUVs
+Large Cars
+Convertibles
+Mid-Size Cars
+Wagons
+Vans
+Luxury
+Sports Cars
