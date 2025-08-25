@@ -101,7 +101,7 @@ def sumEven(p1, p2):
         p2 (int): The larger of the two provided integers
 
     Returns:
-        int: The sum of the provided even integers 
+        total (int): The sum of the provided even integers 
     """
     total = 0
 
@@ -145,6 +145,9 @@ def addValue(valueList, value):
     Args:
         valueList (list): list of values
         value (float): the set amount being added to every value within the list
+
+        Returns:
+        None
     """
 
     for i in range(len(valueList)):
@@ -185,7 +188,7 @@ def fullNames(firstNamesList, lastNamesList):
         lastNamesList (list): A list of last names
 
     Returns:
-        list: A list of first and last names 
+        fullNamesList (list): A list of first and last names 
     """
     fullNamesList = []
     for i in range(len(firstNamesList)):
@@ -227,7 +230,7 @@ def countLowerCase(givenString):
         givenString (str): The string provided 
 
     Returns:
-        int: the integer amount of lowercase letters within the string
+        lowercase (int): the integer amount of lowercase letters within the string
     """
     givenString = list(givenString)
     lowercase = 0
