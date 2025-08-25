@@ -27,8 +27,18 @@ import random
 #    - return:  integer
 #=============================================================================
 
+def quarter(month):
+    """This function determines the quarter of the year from a given month
 
+    Args:
+        month (str): The name of the month
 
+    Returns:
+        value (int): the quarter of the year
+    """
+    date = {"january": 0, "february": 1, "march": 2, "april": 3, "may": 4, "june": 5, "july": 6, "august": 7, "september": 8, "october": 9, "november": 10, "december": 11}
+    value = date[month.lower()]
+    return value // 3 + 1
 
 #==========================================================================
 # q2 - create function sumOfSquares() to meet the conditions below
@@ -47,8 +57,18 @@ import random
 #    - return: integer
 #==========================================================================
 
+def sumOfSquares(number):
+    """ This function calculates the sum of all the squares from 1 to the provided integer.
+        Args:
+        number (int): The provided integer
 
-
+    Returns:
+        total (int): the sum of all the squares
+    """
+    total = 0
+    for i in range(number + 1):
+        total += i**2
+    return total
 
 #==========================================================================
 # q3 - create function sumEven() to meet the conditions below
@@ -72,8 +92,31 @@ import random
 #    - return: integer
 #==========================================================================
 
+def sumEven(p1, p2):
+    """This function adds all of the even integers within two given points. If the points are even, 
+    they are included within the sum. Addition begins from the largest even integer and works its way down. 
 
+    Args:
+        p1 (int): The smaller of the two provided integers
+        p2 (int): The larger of the two provided integers
 
+    Returns:
+        int: The sum of the provided even integers 
+    """
+    total = 0
+
+    # This statement checks to see if p2 is odd, if so p2 is subtracted by one. This results in the largest even integer initializing the loop
+    if p2 % 2 != 0:     
+        p2 = p2 - 1
+
+    # This statement checks to see if p1 is even, if so p1 is subtracted by one. This results in the smallest integer ending the loop
+    if p1 % 2 == 0:     
+        p1 = p1 - 1
+
+    for i in range (p2,p1, -2):
+        print(i)
+        total += i
+    return total
 
 #==========================================================================
 # q4 - create function addValue() to meet the conditions below
@@ -96,9 +139,16 @@ import random
 #    - return: None
 #==========================================================================
 
+def addValue(valueList, value):
+    """This function adds a set amount to every value within a list
 
+    Args:
+        valueList (list): list of values
+        value (float): the set amount being added to every value within the list
+    """
 
-
+    for i in range(len(valueList)):
+        valueList[i] += value
 
 #==========================================================================
 # q5 - create function fullNames() to meet the conditions below
@@ -126,8 +176,22 @@ import random
 #    - return:  list (of strings)
 #==========================================================================
 
+def fullNames(firstNamesList, lastNamesList):
+    """This function creates a list of first and last names from two provided lists of only first names and only last names. 
+    Each first name will receive every last name within the lastNameList before iterating to the next first name.
 
+    Args:
+        firstNamesList (list): A list of first names
+        lastNamesList (list): A list of last names
 
+    Returns:
+        list: A list of first and last names 
+    """
+    fullNamesList = []
+    for i in range(len(firstNamesList)):
+        for j in range(len(lastNamesList)):
+            fullNamesList.append(f"{firstNamesList[i]} {lastNamesList[j]}")
+    return fullNamesList
 
 #=============================================================================
 # q6 - create function countLowerCase() to meet the conditions below
@@ -156,8 +220,22 @@ import random
 #    - return:  integer
 #=============================================================================
 
+def countLowerCase(givenString):
+    """This function counts all of the lowercase letters within a provided string
 
+    Args:
+        givenString (str): The string provided 
 
+    Returns:
+        int: the integer amount of lowercase letters within the string
+    """
+    givenString = list(givenString)
+    lowercase = 0
+
+    for char in givenString:
+        if "a" <= char <= "z":
+            lowercase += 1
+    return lowercase
 
 #=============================================================================
 # q7 - create function readNLines() to meet the conditions below
